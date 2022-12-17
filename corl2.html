@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Robotube: Learning Household Manipulation from Human Videos with Simulated Twin Environments</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Learning Household Manipulation from Human Videos with Simulated Twin Environments">
+<!--    <meta property="og:description" content="We propose Semantic Abstraction (SemAbs), a framework that equips 2D Vision-Language Models (VLMs) with new 3D spatial capabilities, while maintaining their zero-shot robustness. We achieve this abstraction using relevancy maps extracted from CLIP and learn 3D spatial and geometric reasoning skills on top of those abstractions in a semantic-agnostic manner.">-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YYZFP461F7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YYZFP461F7');
+    </script>
+</head>
+
+<body>
+<div style="width: 1000px;  margin-left: auto; margin-right: auto;">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top" id="mainNav">
+        <div class="container">
+<!--            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img id="navImg" src="images/Robotube.png" alt=""></a>-->
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <svg class="svg-inline--fa fa-bars fa-w-14 ml-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-bars ml-1"></i> Font Awesome fontawesome.com -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">News</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">System Features</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Datasets</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Team</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Media</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="banner-layout-1 center center" id="banner1">
+    <div class="item"  style="background-image: url( 'images/bg.jpg' );">
+        <h1 style="text-align: center; margin-bottom:10px;">
+<!--            <img src="images/Robotube.png" alt="hero-banner" class="bannerImg" height="200" style="margin-bottom: -4px;">-->
+            : Learning Household Manipulation from <br>
+            Human Videos with Simulated Twin Environments
+
+        </h1>
+    </div>
+    </section>
+    <section style="display:flex; flex-direction: column; justify-content: center; align-items: center; padding-bottom:30px;">
+
+        <h3 style="text-align: center; margin-top:0px; padding-top: 0px;">
+            <a href="https://corl2022.org/">CoRL 2022 Oral</a>
+        </h3>
+        <div style="width: 100%;overflow:hidden;display:block;">
+            <video autoplay="" muted="" loop="" style="width:100%;margin-bottom: 0; display: block;">
+                <source src="assets/teaser.mp4" type="video/mp4">Your browser does not support this video.
+            </video>
+
+        </div>
+        <p style="margin-top:10px;padding:0px;">
+            We aim to build a useful, reproducible, democratized benchmark for
+            learning household robotic manipulation from human videos. To realize this goal, a
+            diverse, high-quality human video dataset curated specifically for robots is desired.
+            To evaluate the learning progress, a simulated twin environment that resembles
+            the appearance and the dynamics of the physical world would help roboticists
+            and AI researchers validate their algorithms convincingly and efficiently before
+            testing on a real robot. Hence, we present RoboTube, a human video dataset, and
+            its digital twins for learning various robotic manipulation tasks. RoboTube video
+            dataset contains 5,000 video demonstrations recorded with multi-view RGB-D
+            cameras of human-performing everyday household tasks including manipulation
+            of rigid objects, articulated objects, granular objects, deformable objects, and
+            bimanual manipulation. RT-sim, as the simulated twin environments, consists of
+            3D scanned, photo-realistic objects, minimizing the visual domain gap between the
+            physical world and the simulated environment. After extensively benchmarking
+            existing methods in the field of robot learning from videos, the empirical results
+            suggest that knowledge and models learned from the RoboTube video dataset
+            can be deployed, benchmarked, and reproduced in RT-sim and be transferred
+            to a real robot. We hope RoboTube can lower the barrier to robotics research
+            for beginners while facilitating reproducible research in the community.
+        </p>
+
+    </section>
+
+    <hr>
+
+    <section id="placeholder2">
+        <h2>Placeholder</h2>
+        <p>
+            placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+        </p>
+        <p>
+            placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+        </p>
+
+        <p>
+            placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+        </p>
+        <h2 id="ovssc">Placeholder</h2>
+        <p>
+            placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+        </p>
+    </section>
+    <section class="page-section" id="carousel">
+        <div class="container">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3" class=""></li>
+
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="">
+                            <source src="assets/settings.mp4" type="video/mp4">
+                        </video>
+                        <!-- <div class="carousel-caption d-none d-md-block">
+                          <h5>Showcasing Roboturk</h5>
+                          <p>Ajay controls the </p>
+                        </div> -->
+                    </div>
+                    <div class="carousel-item  carousel-item-left">
+                        <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="">
+                            <source src="assets/settings.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-item carousel-item-next carousel-item-left">
+                        <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="">
+                            <source src="assets/settings.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-item">
+                        <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="">
+                            <source src="assets/settings.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section>
+
+        <h2 id="ovss1c">Placeholder</h2>
+        <p>
+            placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+        </p>
+        <div style="width: 1000px;overflow:hidden;display:block;">
+            <video autoplay="" muted="" loop="" style="margin-bottom: -200px; margin-top: -200px;margin-right: -600px;display: block; width: 1050px;">
+                <source src="assets/teaser2.mp4" type="video/mp4">Your browser does not support this video.
+            </video>
+        </div>
+        <!-- <h2>Normal Rectangular Cloths</h2> -->
+        <!-- <p>
+            With as little as two interactions, a two-arm fling can unfurl an initially crumpled cloth completely.
+            FlingBot's efficiency in cloth unfolding means key features of the cloth are quickly revealed for
+            downstream
+            perception and manipulation tasks.
+        </p> -->
+        <h2 id="vool">Placeholder</h2>
+        <p>
+            placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+        </p>
+        <div style="width: 1000px;overflow:hidden;display:block;">
+            <video class="image fit" autoplay="" muted="" loop="" style="margin-bottom: 0; margin-top: -120px;">
+                <source src="assets/pipeline.mp4" type="video/mp4">Your browser does not support this video.
+            </video>
+        </div>
+
+        <h2 >Placeholder</h2>
+        <p>
+            placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+        </p>
+
+    </section>
+    <section>
+        <hr>
+        <h2>Paper &amp; Code</h2>
+        <p>
+            Latest Paper Version: <a href="???????">ArXiv</a>,
+            <a href="???????">Github</a>
+        </p>
+        <a href="https://arxiv.org/abs/2207.11514">
+            <div style="border: 1px solid; border-color: #ddd;margin-bottom:40px; background-color:black;">
+					<span class="image fit" style="margin-bottom: 0px;">
+						<img src="images/paper-thumbnail.png" alt="Paper Thumbnail">
+					</span>
+            </div>
+        </a>
+    </section>
+    <section>
+        <hr>
+        <section style=" padding-bottom: 20px;">
+            <h2>Team</h2>
+            <div style="display:flex; padding-bottom: 20px;">
+                <div style="text-align: center; width:100px; padding: 0px 10px;"><a href="https://haoyu-x.github.io/">
+                    <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/haoyuxiong.png"  alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                    </div>
+                    Haoyu Xiong
+                </a>
+                </div>
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="https://simon-fuhaoyuan.github.io/">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/haoyuanfu.jpg" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Haoyuan Fu
+                    </a>
+                </div>
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="????">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/placeholder.jfif" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Jieyi Zhang
+                    </a>
+                </div>
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="????">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/chenbao.jpg" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Chen Bao
+                    </a>
+                </div>
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="????">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/placeholder.jfif" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Qiang Zhang
+                    </a>
+                </div>
+
+
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="????">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/placeholder.jfif" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Yongxi Huang
+                    </a>
+                </div>
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="https://scholar.google.com/citations?user=PdzO-4YAAAAJ">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/wenqiangxu.jfif" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Wenqiang Xu
+                    </a>
+                </div>
+            </div>
+            <div style="display:flex; padding-bottom: 20px;">
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="https://animesh.garg.tech/">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/animesh.jpg" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Animesh Garg
+                    </a>
+                </div>
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="http://hxu.rocks/">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/huazhexu.jpeg" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Huazhe Xu
+                    </a>
+                </div>
+                <div style="text-align: center; width:100px;padding: 0px 10px;">
+                    <a href="https://www.mvig.org/">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/cewulu.webp" alt="" style="border-radius: 50%;height:100px;width:100px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Cewu Lu
+                    </a>
+                </div>
+            </div>
+            <hr style="margin-top:20px;">
+            <h2>Citation</h2>
+            <section style="position:relative;">
+                <div>
+                    To cite this work, please use the following BibTex entry,
+                    <pre>				<code>@inproceedings{xiong2022robotube,
+title={RoboTube: Learning Household Manipulation from Human Videos with Simulated Twin Environments},
+author={haoyu Xiong and Haoyuan Fu and Jieyi Zhang and Chen Bao and Qiang Zhang and Yongxi Huang and Wenqiang Xu and Animesh Garg and Cewu Lu},
+booktitle={6th Annual Conference on Robot Learning},
+year={2022},
+url={https://openreview.net/forum?id=VD0nXUG5Qk}
+}</code>
+				</pre>
+                    If you have any questions, please feel free to contact <a href="https://haoyu-x.github.io/">Haoyu Xiong</a>.
+                </div>
+                <!-- <img src="images/columbia-fling.gif"
+                    style="width:150px; position:absolute; right: 0px; top:0px; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg);" /> -->
+            </section>
+        </section>
+    </section>
+</div>
+<script src=" assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<!-- Core theme JS-->
+<script src="assets/js/scripts.js"></script>
+</body></html>

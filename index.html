@@ -1,0 +1,514 @@
+<html lang="en-US"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <title>Robotube: Learning Household Manipulation from Human Videos with Simulated Twin Environments</title>
+    <meta name="robots" content="max-image-preview:large">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="alternate" type="application/rss+xml" title="CORL 2022 » Feed" href="https://corl2022.org/feed/">
+    <link rel="alternate" type="application/rss+xml" title="CORL 2022 » Comments Feed" href="https://corl2022.org/comments/feed/">
+    <link rel="alternate" type="application/rss+xml" title="CORL 2022 » Welcome! Comments Feed" href="https://corl2022.org/sample-page/feed/">
+    <script type="text/javascript">
+        window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/corl2022.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.1"}};
+        /*! This file is auto-generated */
+        !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+    </script><script src="https://corl2022.org/wp-includes/js/wp-emoji-release.min.js?ver=6.1.1" type="text/javascript" defer=""></script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 0.07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel="stylesheet" id="wp-block-library-css" href="https://corl2022.org/wp-includes/css/dist/block-library/style.min.css?ver=6.1.1" type="text/css" media="all">
+    <link rel="stylesheet" id="classic-theme-styles-css" href="https://corl2022.org/wp-includes/css/classic-themes.min.css?ver=1" type="text/css" media="all">
+    <style id="global-styles-inline-css" type="text/css">
+        body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+        .wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+        :where(.wp-block-columns.is-layout-flex){gap: 2em;}
+        .wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+    </style>
+    <link rel="stylesheet" id="fontello-css" href="https://corl2022.org/wp-content/themes/corporate-event-pro/css/fontello.css?ver=6.1.1" type="text/css" media="all">
+    <link rel="stylesheet" id="corporate-event-googlefonts-css" href="https://fonts.googleapis.com/css?family=Montserrat%3A200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%7CPoppins%3A200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%7CMontserrat%3A200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%7C&amp;ver=6.1.1" type="text/css" media="all">
+    <link rel="stylesheet" id="owl-carousel-css" href="https://corl2022.org/wp-content/themes/corporate-event-pro/css/owl.carousel.min.css?ver=2.3.4" type="text/css" media="all">
+    <link rel="stylesheet" id="corporate-event-style-css" href="https://corl2022.org/wp-content/themes/corporate-event-pro/style.css?ver=6.1.1" type="text/css" media="all">
+    <link rel="stylesheet" id="corporate-event-schedule-layouts-css" href="https://corl2022.org/wp-content/themes/corporate-event-pro/css/schedule-layouts.css?ver=6.1.1" type="text/css" media="all">
+    <link rel="stylesheet" id="corporate-event-dynamic-css-css" href="https://corl2022.org/wp-content/themes/corporate-event-pro/css/dynamic.css?ver=6.1.1" type="text/css" media="all">
+    <style id="corporate-event-dynamic-css-inline-css" type="text/css">
+
+
+
+        :root {
+            --header-background: #ffffff;
+            --primary-color: #1f7848;
+            --secondary-color: #66ba83;
+            --text-color: #4c4c4c;
+            --accent-color: #1f7848;
+            --light-color: #edf7f0;
+            --dark-color: #111111 ;
+            --grey-color: #606060 ;
+            --header-text-color: #000000;
+
+            --font-family: Poppins;
+        }
+
+
+        html,:root{ font: normal 20px Roboto;}
+        body{line-height: 1.5;}
+
+        header .custom-logo-link img{ width: 150px; }
+
+        .header{padding: 15px 0;}
+
+        /*Site Title*/
+        header .site-title a{ font-size: 25px; font-family: Montserrat; color: #1f7848; }
+
+        /* Banner Colors */
+        section[class*=banner-layout-] .item:before { background: #16093a; opacity: 0.3;}
+
+        #banner .caption .title{
+            font-size: 40px;
+            font-family: Poppins;
+        }
+
+        h1,h2,h3,h4,h5,h6,.btn,#clockdiv,
+        .wep-counter-wrapper .wep-counter,
+        section[class*=banner-layout-] .event-information-holder,
+        section[class*=banner-layout-] .caption .hero-subtitle,
+        section[class*=banner-layout-] .caption .location{
+            font-family: Poppins;
+        }
+
+
+
+
+        /* media */
+        @media (min-width: 320px) and (max-width: 767px){
+            [class*=schedule-layout-] .tab-content .nav-pills .nav-link.active{
+                background: #1f7848;
+            }
+            [class*=schedule-layout-] .tab-content .tabContent-toggler{
+                background: #66ba83;
+            }
+        }
+
+        /* end media */
+
+
+
+    </style>
+    <script type="text/javascript" src="https://corl2022.org/wp-includes/js/jquery/jquery.min.js?ver=3.6.1" id="jquery-core-js"></script>
+    <script type="text/javascript" src="https://corl2022.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+    <script type="text/javascript" id="corporate_event_loadmore-js-extra">
+        /* <![CDATA[ */
+        var corporate_event_loadmore_params = {"ajaxurl":"https:\/\/corl2022.org\/wp-admin\/admin-ajax.php","current_page":"1","max_page":"0"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="https://corl2022.org/wp-content/themes/corporate-event-pro/js/loadmore.js?ver=6.1.1" id="corporate_event_loadmore-js"></script>
+    <link rel="https://api.w.org/" href="https://corl2022.org/wp-json/"><link rel="alternate" type="application/json" href="https://corl2022.org/wp-json/wp/v2/pages/2"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://corl2022.org/xmlrpc.php?rsd">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://corl2022.org/wp-includes/wlwmanifest.xml">
+    <meta name="generator" content="WordPress 6.1.1">
+    <link rel="canonical" href="https://corl2022.org/">
+    <link rel="shortlink" href="https://corl2022.org/">
+    <link rel="alternate" type="application/json+oembed" href="https://corl2022.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcorl2022.org%2F">
+    <link rel="alternate" type="text/xml+oembed" href="https://corl2022.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcorl2022.org%2F&amp;format=xml">
+
+    <style></style>
+
+    <link rel="pingback" href="https://corl2022.org/xmlrpc.php"><script charset="utf-8" src="https://platform.twitter.com/js/horizon_timeline.5b32f06df3f1186af2ebf11024b09726.js"></script></head>
+
+<body class="home page-template-default page page-id-2 wp-custom-logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 0.49803921568627"></feFuncR><feFuncG type="table" tableValues="0 0.49803921568627"></feFuncG><feFuncB type="table" tableValues="0 0.49803921568627"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 1"></feFuncR><feFuncG type="table" tableValues="0 1"></feFuncG><feFuncB type="table" tableValues="0 1"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765"></feFuncR><feFuncG type="table" tableValues="0 1"></feFuncG><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 1"></feFuncR><feFuncG type="table" tableValues="0 0.27843137254902"></feFuncG><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 0"></feFuncR><feFuncG type="table" tableValues="0 0.64705882352941"></feFuncG><feFuncB type="table" tableValues="0 1"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.78039215686275 1"></feFuncR><feFuncG type="table" tableValues="0 0.94901960784314"></feFuncG><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745"></feFuncR><feFuncG type="table" tableValues="0 1"></feFuncG><feFuncB type="table" tableValues="0.44705882352941 0.4"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></feColorMatrix><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.098039215686275 1"></feFuncR><feFuncG type="table" tableValues="0 0.66274509803922"></feFuncG><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725"></feFuncB><feFuncA type="table" tableValues="1 1"></feFuncA></feComponentTransfer><feComposite in2="SourceGraphic" operator="in"></feComposite></filter></defs></svg>    <a class="skip-link screen-reader-text" href="#primary">Skip to content</a>
+<div id="page" class="site">
+    <header id="masthead" class="site-header  header-layout-1">
+        <div class="header">
+            <div class="container">
+                <div class="header-wrapper">
+                    <div class="site-branding-social">
+                        <div class="site-branding">
+                            <a href="https://corl2022.org/" class="custom-logo-link" rel="home" aria-current="page">
+                                <img width="2500" height="1991" src="images/Robotube.png" class="custom-logo" alt="CORL 2022" decoding="async" srcset="images/Robotube.png 2500w, images/Robotube.png 300w, images/Robotube.png 1024w, images/Robotube.png 768w, images/Robotube.png 1536w, images/Robotube.png 2048w" sizes="(max-width: 2500px) 100vw, 2500px"></a>                                                                    </div><!-- .site-branding -->
+
+
+                        <div class="social-navigation">
+
+                            <nav id="site-navigation" class="main-navigation">
+                                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><!-- Primary Menu -->
+                                    <div id="nav-icon">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </button>
+                                <div class="menu-menu-container"><ul id="menu-menu" class="menu nav-menu">
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">News</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">System Features</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Datasets</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Projects</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Team</a></li>
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#placeholder2">Media</a></li>
+                                </ul></div>            </nav><!-- #site-navigation -->
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </header><!-- #masthead -->
+
+
+
+
+
+
+    <div id="content" class="site-content">
+
+        <section class="banner-layout-1 center center" id="banner">
+            <div class="item" style="background-image: url( 'images/bg.jpg' );">
+                <div class="banner-text-info">
+                    <div class="container">
+                        <div class="caption">
+
+
+                            <div class="title">
+                               Robotube : Learning Household Manipulation from  Human Videos with Simulated Twin Environments                  </div>
+
+                            <p>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="display:flex; flex-direction: column; justify-content: center; align-items: center; margin-top:10px;margin-left:100px;margin-right:100px;pxpadding:0px;">
+
+<!--            <h3 style="text-align: center; margin-top:0px; padding-top: 0px;">-->
+<!--                <a href="https://corl2022.org/">CoRL 2022 Oral</a>-->
+<!--            </h3>-->
+            <div style="width: 100%;overflow:hidden;display:block;">
+                <video autoplay="" muted="" loop="" style="width:100%;margin-bottom: 0; display: block;">
+                    <source src="assets/teaser.mp4" type="video/mp4">Your browser does not support this video.
+                </video>
+
+            </div>
+            <p >
+                We aim to build a useful, reproducible, democratized benchmark for
+                learning household robotic manipulation from human videos. To realize this goal, a
+                diverse, high-quality human video dataset curated specifically for robots is desired.
+                To evaluate the learning progress, a simulated twin environment that resembles
+                the appearance and the dynamics of the physical world would help roboticists
+                and AI researchers validate their algorithms convincingly and efficiently before
+                testing on a real robot. Hence, we present RoboTube, a human video dataset, and
+                its digital twins for learning various robotic manipulation tasks. RoboTube video
+                dataset contains 5,000 video demonstrations recorded with multi-view RGB-D
+                cameras of human-performing everyday household tasks including manipulation
+                of rigid objects, articulated objects, granular objects, deformable objects, and
+                bimanual manipulation. RT-sim, as the simulated twin environments, consists of
+                3D scanned, photo-realistic objects, minimizing the visual domain gap between the
+                physical world and the simulated environment. After extensively benchmarking
+                existing methods in the field of robot learning from videos, the empirical results
+                suggest that knowledge and models learned from the RoboTube video dataset
+                can be deployed, benchmarked, and reproduced in RT-sim and be transferred
+                to a real robot. We hope RoboTube can lower the barrier to robotics research
+                for beginners while facilitating reproducible research in the community.
+            </p>
+
+            <hr>
+        </section>
+
+        <section id="placeholder2" style="margin-top:10px;margin-left:100px;margin-right:100px;pxpadding:0px;">
+            <h2>Placeholder</h2>
+            <p>
+                placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+                placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+            </p>
+        </section>
+        <section class="page-section" id="carousel">
+            <div class="container">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3" class=""></li>
+
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" >
+                            <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="" >
+                                <source src="assets/1.mp4" type="video/mp4">
+                            </video>
+                            <!-- <div class="carousel-caption d-none d-md-block">
+                              <h5>Showcasing Roboturk</h5>
+                              <p>Ajay controls the </p>
+                            </div> -->
+                        </div>
+                        <div class="carousel-item">
+                            <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="">
+                                <source src="assets/2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-item">
+                            <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="">
+                                <source src="assets/3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-item">
+                            <video class="video-fluid img-responsive" width="100%" autoplay="" loop="" muted="" playsinline="">
+                                <source src="assets/4.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<!--                        <span class="sr-only">Previous</span>-->
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+<!--                        <span class="sr-only">Next</span>-->
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top:10px;margin-left:100px;margin-right:100px;pxpadding:0px;">
+
+            <h2 id="ovss1c">Placeholder</h2>
+            <p>
+                placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+            </p>
+            <div style="overflow:hidden;display:block;">
+                <video autoplay="" muted="" loop="" style="margin-bottom: 0px; margin-top: 0px;margin-right: 0px;display: block; width: 100%;">
+                    <source src="assets/teaser2.mp4" type="video/mp4">Your browser does not support this video.
+                </video>
+            </div>
+            <!-- <h2>Normal Rectangular Cloths</h2> -->
+            <!-- <p>
+                With as little as two interactions, a two-arm fling can unfurl an initially crumpled cloth completely.
+                FlingBot's efficiency in cloth unfolding means key features of the cloth are quickly revealed for
+                downstream
+                perception and manipulation tasks.
+            </p> -->
+            <h2 id="vool">Placeholder</h2>
+            <p>
+                placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+            </p>
+            <div style="overflow:hidden;display:block;">
+                <video class="image fit" autoplay="" muted="" loop="" style="margin-bottom: 0px; margin-top: 0px;margin-right: 0px;display: block; width: 100%;">
+                    <source src="assets/pipeline.mp4" type="video/mp4">Your browser does not support this video.
+                </video>
+            </div>
+
+            <h2 >Placeholder</h2>
+            <p>
+                placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+            </p>
+            <div style="overflow:hidden;display:block;">
+                <video class="image fit" autoplay="" muted="" loop="" style="margin-bottom: 0px; margin-top: 0px;margin-right: 0px;display: block; width: 100%;">
+                    <source src="assets/t15.mp4" type="video/mp4">Your browser does not support this video.
+                </video>
+            </div>
+
+            <h2 >Placeholder</h2>
+            <p>
+                placeholder  placeholderplaceholderplaceholderplaceholderplaceholder
+            </p>
+        </section>
+        <section style="margin-top:10px;margin-left:100px;margin-right:100px;pxpadding:0px;">
+            <hr>
+            <h2>Paper &amp; Code</h2>
+            <p>
+                Latest Paper Version: <a href="???????">ArXiv</a>,
+                <a href="???????">Github</a>
+            </p>
+            <a href="https://arxiv.org/abs/2207.11514">
+                <div style="border: 1px solid; border-color: #ddd;margin-bottom:40px; background-color:black;">
+					<span class="image fit" style="margin-bottom: 0px;">
+						<img src="images/paper-thumbnail.png" alt="Paper Thumbnail">
+					</span>
+                </div>
+            </a>
+        </section>
+
+        <section style="margin-top:10px;margin-left:100px;margin-right:100px;pxpadding:0px;">
+            <hr>
+            <section style=" padding-bottom: 20px;">
+                <h2>Team</h2>
+                <div style="display:flex; padding-bottom: 20px;">
+                    <div style="text-align: center; padding: 0px 0px;"><a href="https://haoyu-x.github.io/">
+                        <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/haoyuxiong.png"  alt="" style="border-radius: 100%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                        </div>
+                        Haoyu Xiong
+                    </a>
+                    </div>
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="https://simon-fuhaoyuan.github.io/">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/haoyuanfu.jpg" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Haoyuan Fu
+                        </a>
+                    </div>
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="????">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/placeholder.jfif" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Jieyi Zhang
+                        </a>
+                    </div>
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="????">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/chenbao.jpg" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Chen Bao
+                        </a>
+                    </div>
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="????">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/placeholder.jfif" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Qiang Zhang
+                        </a>
+                    </div>
+
+
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="????">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/placeholder.jfif" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Yongxi Huang
+                        </a>
+                    </div>
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="https://scholar.google.com/citations?user=PdzO-4YAAAAJ">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/wenqiangxu.jfif" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Wenqiang Xu
+                        </a>
+                    </div>
+                </div>
+                <div style="display:flex; padding-bottom: 20px;">
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="https://animesh.garg.tech/">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/animesh.jpg" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Animesh Garg
+                        </a>
+                    </div>
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="http://hxu.rocks/">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/huazhexu.jpeg" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Huazhe Xu
+                        </a>
+                    </div>
+                    <div style="text-align: center; padding: 0px 10px;">
+                        <a href="https://www.mvig.org/">
+                            <div style="background-color: black; border-radius: 100%;">
+								<span class="image fit" style="margin-bottom: 0.5em;">
+									<img src="images/cewulu.webp" alt="" style="border-radius: 50%;height:150px;width:150px; object-fit: cover;	">
+								</span>
+                            </div>
+                            Cewu Lu
+                        </a>
+                    </div>
+                </div>
+                <hr style="margin-top:20px;">
+
+            </section>
+
+
+
+        </section>
+        <section style="position:relative;">
+            <div style="margin-top:10px;margin-left:100px;margin-right:100px;pxpadding:0px;">
+                <h2 >Citation</h2>
+                To cite this work, please use the following BibTex entry,
+                <pre style="background-color: #FFFFFF; margin-left:-20px;margin-top:-40px;margin-bottom:-20px;">
+                        <code>@inproceedings{xiong2022robotube,
+title={RoboTube: Learning Household Manipulation from Human Videos with Simulated Twin Environments},
+author={haoyu Xiong and Haoyuan Fu and Jieyi Zhang and Chen Bao and Qiang Zhang and Yongxi Huang and Wenqiang Xu and Animesh Garg and Cewu Lu},
+booktitle={6th Annual Conference on Robot Learning},
+year={2022},
+url={https://openreview.net/forum?id=VD0nXUG5Qk}
+}</code>
+				</pre>
+                If you have any questions, please feel free to contact <a href="https://haoyu-x.github.io/" >Haoyu Xiong</a>.
+
+            </div>
+            <div style="margin-bottom:50px;"></div>
+        </section>
+
+    </div><!-- #content -->
+
+
+
+</div><!-- #page -->
+
+<style id="core-block-supports-inline-css" type="text/css">
+    .wp-block-columns.wp-container-4,.wp-block-columns.wp-container-8,.wp-block-columns.wp-container-12{flex-wrap:nowrap;}
+</style>
+<script type="text/javascript" src="https://corl2022.org/wp-content/themes/corporate-event-pro/js/navigation.js?ver=6.1.1" id="corporate-event-navigation-js"></script>
+<script type="text/javascript" src="https://corl2022.org/wp-content/themes/corporate-event-pro/js/skip-link-focus-fix.js?ver=6.1.1" id="corporate-event-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="https://corl2022.org/wp-content/themes/corporate-event-pro/js/owl.carousel.js?ver=2.3.4" id="owl.carousel-js"></script>
+<script type="text/javascript" id="corporate-event-script-js-extra">
+    <!-- Bootstrap core JS-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<!-- Core theme JS-->
+
+<script type="text/javascript" src="https://corl2022.org/wp-content/themes/corporate-event-pro/js/script.js?ver=6.1.1" id="corporate-event-script-js"></script>
+<script type="text/javascript" src="https://corl2022.org/wp-content/themes/corporate-event-pro/js/schedule-layouts.js?ver=6.1.1" id="corporate-event-schedule-layouts-js"></script>
+<script type="text/javascript" id="event-frontend-script-js-extra">
+    /* <![CDATA[ */
+    var event_var = {"date":"2022-12-14","time":"08:00"};
+    /* ]]> */
+</script>
+<script type="text/javascript" src="https://corl2022.org/wp-content/themes/corporate-event-pro/js/event-frontend.js?ver=20151215" id="event-frontend-script-js"></script>
+<script>
+    /(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+</script>
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="https://platform.twitter.com/widgets/widget_iframe.644279d1635fd969e87af94a98bd232b.html?origin=https%3A%2F%2Fcorl2022.org" title="Twitter settings iframe" style="display: none;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe"></iframe></body></html>
